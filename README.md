@@ -1,6 +1,8 @@
 # wee-db-converter
 Converter service from MariaDB to MongoDB
 
+[![CodeQL](https://github.com/guionardo/wee-db-converter/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/guionardo/wee-db-converter/actions/workflows/codeql-analysis.yml)
+
 ## Tabelas
 
 posts (usar post_types vazios, video, media, link, photo)
