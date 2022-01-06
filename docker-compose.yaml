@@ -1,0 +1,39 @@
+version: '3'
+
+services:  
+  mariadb:
+    image: mariadb    
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: bp1234
+      MYSQL_DATABASE: bp
+      MYSQL_USER: bp
+      MYSQL_PASSWORD: bp1234
+  
+    logging:
+      driver: syslog
+      options:
+        tag: "{{.DaemonName}}(image={{.ImageName}};name={{.Name}};id={{.ID}})"
+    networks:
+      - backend    
+    volumes:
+     - ${PWD}/volumes/mariadb:/var/lib/mysql
+ 
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: MongoDB2019!
+    ports:
+      - "27017:27017"
+    volumes:
+      - ${PWD}/volumes/mongodb:/data/db
+    networks:
+      - backend
+
+networks:
+  frontend:
+    driver: bridge         
+  backend:
+    driver: bridge
